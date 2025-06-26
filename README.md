@@ -1,0 +1,3 @@
+# r-spatial
+
+This repository serves as my personal R-based spatial analysis hub—a central workspace for testinggeospatial workflows. It brings together commonly used spatial data manipulation techniques, visualization tools, and analysis routines, primarily using packages such as `sf`, `terra`. The goal is to streamline spatial data handling and promote reusable, reproducible code for research and reporting.
