@@ -1,5 +1,3 @@
-renv::snapshot()
-
 library(sf, quietly = TRUE)
 library(terra, quietly = TRUE)
 
@@ -18,4 +16,13 @@ sf_forest_block <- st_transform(sf_forest_block, 4326)
 
 masked_raster <- mask(merged_raster, sf_forest_block, inverse = TRUE)
 
-writeRaster(masked_raster, "Raster-image/output/merged_interpolation.tif")
+raster_polygon <- as.polygons(masked_raster)
+
+writeRaster(masked_raster, "Raster-image/output/merged_interpolation.tif",
+            overwrite = TRUE)
+st_write(
+  st_as_sf(raster_polygon),
+  "Raster-image/output/merged_interpolation.kml",
+  driver = "KML",
+  delete_dsn = TRUE
+)
