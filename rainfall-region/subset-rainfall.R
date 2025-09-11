@@ -11,8 +11,8 @@ if (length(args) < 1) {
 input_path <- Sys.glob("rainfall-region//input//*.shp")
 rainfalL_region <- st_read(input_path)
 
-rainfalL_region <- filter(rainfalL_region, region_zon == args[3])
+rainfalL_region <- filter(rainfalL_region, region_zon == args[1])
 
 # Write the filtered data to a new shapefile
 output_path <- "rainfall-region//output"
-st_write(rainfalL_region, paste0(output_path, "//", args[3], ".shp"))
+st_write(rainfalL_region, paste0(output_path, "//", args[1], ".shp"))
