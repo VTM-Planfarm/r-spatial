@@ -17,7 +17,7 @@ sf_input <- st_transform(sf_input, 4326)
 sf_base <- sf_base |>
   add_row(
     FID_1 = 0,
-    code = args[2],
+    code = as.numeric(args[2]),
     Client = args[1],
     Business = args[1],
     geometry = sf_input$geometry
