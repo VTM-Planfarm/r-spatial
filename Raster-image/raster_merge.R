@@ -20,9 +20,4 @@ raster_polygon <- as.polygons(masked_raster)
 
 writeRaster(masked_raster, "Raster-image/output/merged_interpolation.tif",
             overwrite = TRUE)
-st_write(
-  st_as_sf(raster_polygon),
-  "Raster-image/output/merged_interpolation.kml",
-  driver = "KML",
-  delete_dsn = TRUE
-)
+            
