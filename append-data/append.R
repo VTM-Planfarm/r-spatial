@@ -4,7 +4,7 @@ library(tidyverse)
 args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) < 2) {
-  stop("Usage: Rscript subset-rainfall.R <business_name> <code>") # nolint
+  stop("Usage: Rscript append-data/append.R <business_name> <code>") # nolint
 }
 
 base_path <- Sys.glob("append-data/base/*.shp")
