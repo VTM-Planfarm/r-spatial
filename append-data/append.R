@@ -10,13 +10,16 @@ if (length(args) < 2) {
 base_path <- Sys.glob("append-data/base/*.shp")
 sf_base <- read_sf(base_path)
 
-input_path <- Sys.glob("append-data/input/*.shp")
-sf_input <- read_sf(input_path)
-sf_input <- st_transform(sf_input, 4326)
-
+if (args[1] %in% sf_base$Business) {
+  stop("Error: Business name already exists in the base dataset.")
+}
 if (nrow(filter(sf_base, code == as.numeric(args[2]))) > 0) {
   stop("Error: Code already exists in the base dataset.")
 }
+
+input_path <- Sys.glob("append-data/input/*.shp")
+sf_input <- read_sf(input_path)
+sf_input <- st_transform(sf_input, 4326)
 
 sf_base <- sf_base |>
   add_row(
