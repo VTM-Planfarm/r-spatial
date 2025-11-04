@@ -1,4 +1,4 @@
-library(sf)
+suppressPackageStartupMessages(library(sf))
 library(tidyverse)
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -8,11 +8,15 @@ if (length(args) < 2) {
 }
 
 base_path <- Sys.glob("append-data/base/*.shp")
-sf_base <- st_read(base_path)
+sf_base <- read_sf(base_path)
 
 input_path <- Sys.glob("append-data/input/*.shp")
-sf_input <- st_read(input_path)
+sf_input <- read_sf(input_path)
 sf_input <- st_transform(sf_input, 4326)
+
+if (nrow(filter(sf_base, code == as.numeric(args[2]))) > 0) {
+  stop("Error: Code already exists in the base dataset.")
+}
 
 sf_base <- sf_base |>
   add_row(
